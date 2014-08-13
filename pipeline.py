@@ -210,7 +210,7 @@ project = Project(
     title="Canvas",
     project_html="""
         <img class="project-logo" alt="Project logo" src="http://archiveteam.org/images/8/8a/Archivetime.png" height="50px" title=""/>
-        <h2>home.swipnet.se <span class="links"><a href="">Website</a> &middot; <a href="http://tracker.archiveteam.org/swipnet/">Leaderboard</a></span></h2>
+        <h2>home.swipnet.se <span class="links"><a href="http://home.swipnet.se/">Website</a> &middot; <a href="http://tracker.archiveteam.org/swipnet/">Leaderboard</a></span></h2>
         <p>Archiving Swedish websites from home.swipnet.se.</p>
     """,
     utc_deadline=datetime.datetime(2014, 8, 31, 23, 59, 0)
