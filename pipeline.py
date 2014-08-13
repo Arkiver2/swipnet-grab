@@ -226,9 +226,7 @@ pipeline = Pipeline(
         max_tries=2,
         accept_on_exit_code=[0, 8],
         env={
-            "item_dir": ItemValue("item_dir"),
-            "item_value": ItemValue("item_value"),
-            "item_type": ItemValue("item_type"),
+            "item_name": ItemValue("item_name"),
         }
     ),
     PrepareStatsForTracker(
