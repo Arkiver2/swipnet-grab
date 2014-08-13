@@ -83,7 +83,7 @@ wget.callbacks.get_urls = function(file, url, is_css, iri)
         url = '/' .. url
       end
 
-      url = 'http://canv.as' .. url
+      url = 'http://mysite.swipnet.se' .. url
     end
 
 --    io.stdout:write("\n  Added " .. url .. ".\n")
