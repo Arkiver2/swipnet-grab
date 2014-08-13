@@ -145,7 +145,7 @@ def get_hash(filename):
 
 CWD = os.getcwd()
 PIPELINE_SHA1 = get_hash(os.path.join(CWD, 'pipeline.py'))
-LUA_SHA1 = get_hash(os.path.join(CWD, 'canvas.lua'))
+LUA_SHA1 = get_hash(os.path.join(CWD, 'swipnet.lua'))
 
 
 def stats_id_function(item):
@@ -183,8 +183,8 @@ class WgetArgs(object):
             "--domains", "home.swipnet.se,swipnet.se",
             "--warc-file", ItemInterpolation("%(item_dir)s/%(warc_file_base)s"),
             "--warc-header", "operator: Archive Team",
-            "--warc-header", "canvas-archive-dld-script-version: " + VERSION,
-            "--warc-header", ItemInterpolation("canvas-user: %(item_name)s"),
+            "--warc-header", "swipnet-archive-dld-script-version: " + VERSION,
+            "--warc-header", ItemInterpolation("swipnet-user: %(item_name)s"),
             "--header", "Host: home.swipnet.se",
         ]
 
@@ -207,7 +207,7 @@ class WgetArgs(object):
 # This will be shown in the warrior management panel. The logo should not
 # be too big. The deadline is optional.
 project = Project(
-    title="Canvas",
+    title="Swipnet",
     project_html="""
         <img class="project-logo" alt="Project logo" src="http://archiveteam.org/images/8/8a/Archivetime.png" height="50px" title=""/>
         <h2>home.swipnet.se <span class="links"><a href="http://home.swipnet.se/">Website</a> &middot; <a href="http://tracker.archiveteam.org/swipnet/">Leaderboard</a></span></h2>
