@@ -188,8 +188,18 @@ class WgetArgs(object):
         ]
 
         item_name = item['item_name']
+        assert ':' in item_name
+        item_type, item_value = item_name.split(':', 1)
 
-        wget_args.append('http://home.swipnet.se/{0}/'.format(item_name))
+        assert item_type
+        assert item_value
+
+        item['item_type'] = item_type
+        item['item_value'] = item_value
+
+        wget_args.append('http://{0}.swipnet.se/{1}/'.format(item_type, item_value))
+
+        # wget_args.append('http://home.swipnet.se/{0}/'.format(item_name))
 
         if 'bind_address' in globals():
             wget_args.extend(['--bind-address', globals()['bind_address']])
