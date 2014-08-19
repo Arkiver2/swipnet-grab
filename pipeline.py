@@ -180,10 +180,10 @@ class WgetArgs(object):
             "--tries", "inf",
             "--span-hosts",
             "--waitretry", "30",
-            "--domains", "home.swipnet.se,swipnet.se",
+            "--domains", "swipnet.se",
             "--warc-file", ItemInterpolation("%(item_dir)s/%(warc_file_base)s"),
             "--warc-header", "operator: Archive Team",
-            "--warc-header", "swipnet-archive-dld-script-version: " + VERSION,
+            "--warc-header", "swipnet-dld-script-version: " + VERSION,
             "--warc-header", ItemInterpolation("swipnet-user: %(item_name)s"),
         ]
 
