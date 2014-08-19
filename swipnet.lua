@@ -20,7 +20,8 @@ wget.callbacks.download_child_p = function(urlpos, parent, depth, start_url_pars
   if url == "http://www.tele2.se/" or
     url == "http://tele2.se/" then
     return false
-
+  elseif string.match(url, "cgi%.swipnet%.se/") then
+    return false
   else
     return verdict
   end
@@ -56,8 +57,8 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
   tries = 0
 
   -- We're okay; sleep a bit (if we have to) and continue
-    -- local sleep_time = 0.1 * (math.random(75, 1000) / 100.0)
-    local sleep_time = 0
+  -- local sleep_time = 0.1 * (math.random(75, 1000) / 100.0)
+  local sleep_time = 0
 
   --  if string.match(url["host"], "cdn") or string.match(url["host"], "media") then
   --    -- We should be able to go fast on images since that's what a web browser does
