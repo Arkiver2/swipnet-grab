@@ -108,7 +108,7 @@ class PrepareDirectories(SimpleTask):
 
     def process(self, item):
         item_name = item["item_name"]
-        escaped_item_name = item_name.replace(':', '_').replace('/', '_')
+        escaped_item_name = item_name.replace(':', '_').replace('/', '_').replace('~', '_')
         dirname = "/".join((item["data_dir"], escaped_item_name))
 
         if os.path.isdir(dirname):
