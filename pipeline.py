@@ -185,7 +185,6 @@ class WgetArgs(object):
             "--warc-header", "operator: Archive Team",
             "--warc-header", "swipnet-archive-dld-script-version: " + VERSION,
             "--warc-header", ItemInterpolation("swipnet-user: %(item_name)s"),
-            "--header", "Host: home.swipnet.se",
         ]
 
         item_name = item['item_name']
