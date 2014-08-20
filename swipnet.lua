@@ -48,7 +48,7 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
     if tries >= 5 then
       io.stdout:write("\nI give up...\n")
       io.stdout:flush()
-      return wget.actions.ABORT
+      return wget.actions.NOTHING
     else
       return wget.actions.CONTINUE
     end
