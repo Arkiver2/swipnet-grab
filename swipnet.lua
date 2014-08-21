@@ -1,5 +1,7 @@
 local url_count = 0
 local tries = 0
+local item_type = os.getenv('item_type')
+local item_value = os.getenv('item_value')
 
 
 read_file = function(file)
@@ -22,6 +24,18 @@ wget.callbacks.download_child_p = function(urlpos, parent, depth, start_url_pars
     return false
   elseif string.match(url, "cgi%.swipnet%.se/") then
     return false
+  elseif string.match(url, "swipnet%.se/([^/]+)/") then
+    local directory_name = string.match(url, "swipnet%.se/([^/]+)/")
+    directory_name = string.gsub(directory_name, '%%7E', '~')
+    
+    if directory_name ~= item_value then
+      -- do not want someone else's homepage
+       -- io.stdout:write("\n Reject " .. url .. " " .. directory_name .. "\n")
+       -- io.stdout:flush()
+      return false
+    else
+      return verdict
+    end
   else
     return verdict
   end
