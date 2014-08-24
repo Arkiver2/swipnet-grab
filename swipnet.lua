@@ -26,6 +26,8 @@ wget.callbacks.download_child_p = function(urlpos, parent, depth, start_url_pars
     return false
   elseif string.match(url, "www%.swipnet%.se/") then
     return false
+  elseif string.match(url, "//////////") then
+    return false
   elseif string.match(url, "swipnet%.se/([^/]+)/") then
     local directory_name = string.match(url, "swipnet%.se/([^/]+)/")
     directory_name = string.gsub(directory_name, '%%7E', '~')
