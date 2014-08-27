@@ -51,50 +51,33 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
   -- NEW for 2014: Slightly more verbose messages because people keep
   -- complaining that it's not moving or not working
   local status_code = http_stat["statcode"]
-  
+
   url_count = url_count + 1
   io.stdout:write(url_count .. "=" .. status_code .. " " .. url["url"] .. ".  \r")
   io.stdout:flush()
+
   if status_code >= 500 or
     (status_code >= 400 and status_code ~= 404 and status_code ~= 403) then
-    if string.match(url["host"], "swipnet%.se") then
-      io.stdout:write("\nServer returned "..http_stat.statcode..". Sleeping.\n")
+    io.stdout:write("\nServer returned "..http_stat.statcode..". Sleeping.\n")
+    io.stdout:flush()
+
+    os.execute("sleep 10")
+
+    tries = tries + 1
+
+    if tries >= 5 then
+      io.stdout:write("\nI give up...\n")
       io.stdout:flush()
-      
-      os.execute("sleep 10")
-      
-      tries = tries + 1
-      
-      if tries >= 5 then
-        io.stdout:write("\nI give up...\n")
-        io.stdout:flush()
-        return wget.actions.ABORT
-      else
-        return wget.actions.CONTINUE
-      end
+      return wget.actions.ABORT
     else
-      io.stdout:write("\nServer returned "..http_stat.statcode..". Sleeping.\n")
-      io.stdout:flush()
-      
-      os.execute("sleep 10")
-      
-      tries = tries + 1
-      
-      if tries >= 5 then
-        io.stdout:write("\nI give up...\n")
-        io.stdout:flush()
-        return wget.actions.NOTHING
-      else
-        return wget.actions.CONTINUE
-      end
+      return wget.actions.CONTINUE
     end
   elseif status_code == 0 then
     io.stdout:write("\nServer returned "..http_stat.statcode..". Sleeping.\n")
     io.stdout:flush()
-    
     return wget.actions.ABORT
   else
-    return wget.actions.CONTINUE
+    return wget.actions.NOTHING
   end
 
   tries = 0
