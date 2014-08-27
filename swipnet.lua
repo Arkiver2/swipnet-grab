@@ -73,8 +73,6 @@ wget.callbacks.httploop_result = function(url, err, http_stat)
       return wget.actions.CONTINUE
     end
   elseif status_code == 0 then
-    io.stdout:write("\nServer returned "..http_stat.statcode..". Sleeping.\n")
-    io.stdout:flush()
     return wget.actions.ABORT
   else
     return wget.actions.NOTHING
