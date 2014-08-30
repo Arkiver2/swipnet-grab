@@ -1,8 +1,22 @@
+dofile("urlcode.lua")
+dofile("table_show.lua")
+JSON = (loadfile "JSON.lua")()
+
 local url_count = 0
 local tries = 0
 local item_type = os.getenv('item_type')
 local item_value = os.getenv('item_value')
 
+load_json_file = function(file)
+  if file then
+    local f = io.open(file)
+    local data = f:read("*all")
+    f:close()
+    return JSON:decode(data)
+  else
+    return nil
+  end
+end
 
 read_file = function(file)
   if file then
@@ -12,6 +26,22 @@ read_file = function(file)
     return data
   else
     return ""
+  end
+end
+
+wget.callbacks.get_urls = function(file, url, is_css, iri)
+  local urls = {}
+  local html = nil
+  
+  if string.match(url, "home[0-9]+%.swipnet%.se[.]+") then
+    local orig_home = string.match(url, "(home[0-9]+)%.swipnet%.se[.]+")
+    local site_url = string.match(url, "home[0-9]+(%.swipnet%.se[.]+)")
+    
+    if orig_home ~= item_type then
+      table.insert(urls, { url=item_type..site_url })
+    else
+      return verdict
+    end
   end
 end
 
